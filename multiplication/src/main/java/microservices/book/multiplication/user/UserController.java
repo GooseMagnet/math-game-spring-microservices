@@ -2,6 +2,7 @@ package microservices.book.multiplication.user;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,7 @@ public class UserController {
 
     @GetMapping("/{idList}")
     public List<User> getUsersByIdList(@PathVariable final List<Long> idList) {
+        log.info("Resolving aliases for users {}", idList);
         return userRepository.findAllByIdIn(idList);
     }
 }
